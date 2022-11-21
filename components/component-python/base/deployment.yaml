@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: component-python
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: component-python
+    app.kubernetes.io/part-of: e2e-multiple-components
+  name: component-python
+  namespace: e2e-demo-yvsd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: component-python
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: component-python
+    spec:
+      containers:
+      - image: quay.io/psturc/test-images:d6667c90e28748ed9ab85249ca1d520d
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 8081
+        resources: {}
+status: {}
