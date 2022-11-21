@@ -33,7 +33,7 @@ spec:
       - name: git-url
         value: https://github.com/redhat-appstudio-qe/private-quarkus-devfile-sample
       - name: output-image
-        value: quay.io/psturc/test-images:aef72c732f7f4f779819ad8f8392338c-$(tt.params.git-revision)
+        value: quay.io/psturc/test-images@sha256:c8c9d1f3f5e9f1996e8d2015401a2d6c0183381fa29b26342034d7eda4dc459f-$(tt.params.git-revision)
       - name: dockerfile
         value: src/main/docker/Dockerfile.jvm.staged
       - name: path-context
