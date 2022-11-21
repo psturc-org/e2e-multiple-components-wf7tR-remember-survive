@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/instance: component-python
     spec:
       containers:
-      - image: quay.io/psturc/test-images:d6667c90e28748ed9ab85249ca1d520d
+      - image: quay.io/psturc/test-images@sha256:4331ff52693a6b832c6689356b9646fb82844a4daf30bf0949cd9dc1b7ee5189
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
