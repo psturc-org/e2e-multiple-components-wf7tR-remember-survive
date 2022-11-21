@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: private-quarkus-component
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: private-quarkus-component
+    app.kubernetes.io/part-of: e2e-multiple-components
+  name: private-quarkus-component
+  namespace: e2e-demo-yvsd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: private-quarkus-component
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: private-quarkus-component
+    spec:
+      containers:
+      - image: quay.io/psturc/test-images:aef72c732f7f4f779819ad8f8392338c
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 8081
+        resources: {}
+      imagePullSecrets:
+      - name: ggqftzrogo
+status: {}

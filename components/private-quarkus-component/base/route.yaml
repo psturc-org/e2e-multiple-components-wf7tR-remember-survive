@@ -1,0 +1,23 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: private-quarkus-component
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: private-quarkus-component
+    app.kubernetes.io/part-of: e2e-multiple-components
+  name: private-quarkus-component
+  namespace: e2e-demo-yvsd
+spec:
+  port:
+    targetPort: 8081
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: private-quarkus-component
+    weight: 100
+status: {}

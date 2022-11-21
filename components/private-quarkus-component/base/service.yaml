@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: private-quarkus-component
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: private-quarkus-component
+    app.kubernetes.io/part-of: e2e-multiple-components
+  name: private-quarkus-component
+  namespace: e2e-demo-yvsd
+spec:
+  ports:
+  - port: 8081
+    targetPort: 8081
+  selector:
+    app.kubernetes.io/instance: private-quarkus-component
+status:
+  loadBalancer: {}
